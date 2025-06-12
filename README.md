@@ -28,7 +28,7 @@ A full-stack Security Information and Event Management (SIEM) Dashboard built to
 ---
 
 ## 📂 Project Structure
-
+'''
 ├── static/ 
 │ ├── css/ 
 │ ├── js/ 
@@ -44,7 +44,7 @@ A full-stack Security Information and Event Management (SIEM) Dashboard built to
 ├── config.py 
 ├── database.db 
 └── requirements.txt 
-
+'''
 ---
 
 ## 🗒️ Install Dependencies
