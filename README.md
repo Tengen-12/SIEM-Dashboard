@@ -29,21 +29,21 @@ A full-stack Security Information and Event Management (SIEM) Dashboard built to
 
 ## 📂 Project Structure
 
-├── static/
-│ ├── css/
-│ ├── js/
-│ └── images/
-├── templates/
-│ ├── index.html
-│ ├── login.html
-│ └── dashboard.html
-├── scripts/
-│ ├── vulnerability_scanner.py
-│ └── geo_blocker.py
-├── app.py
-├── config.py
-├── database.db
-└── requirements.txt
+├── static/ 
+│ ├── css/ 
+│ ├── js/ 
+│ └── images/ 
+├── templates/ 
+│ ├── index.html 
+│ ├── login.html 
+│ └── dashboard.html 
+├── scripts/ 
+│ ├── vulnerability_scanner.py 
+│ └── geo_blocker.py 
+├── app.py 
+├── config.py 
+├── database.db 
+└── requirements.txt 
 
 ---
 
@@ -55,7 +55,7 @@ pip install -r requirements.txt
 
 ## 📄 Access the Dashboard
 
-Run the application - python app.py
+Run the application - python app.py 
 Access the Dashboard - http://127.0.0.1:5000
 
 ---
