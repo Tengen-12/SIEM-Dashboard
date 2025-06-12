@@ -70,5 +70,5 @@ pip install -r requirements.txt
 ---
 
 ## 🙋‍♂️ Author
-Aditya Barokar
-Security Analyst and Penetration Tester
+Aditya Barokar 
+- Security Analyst and Penetration Tester
