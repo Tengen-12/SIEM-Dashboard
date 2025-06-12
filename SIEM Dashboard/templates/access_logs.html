@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Access Logs - SIEM{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Access Logs</h1>
+    <div class="page-actions">
+        <button class="btn btn-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>
+            </svg>
+            Export
+        </button>
+        <button class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/>
+            </svg>
+            Refresh
+        </button>
+    </div>
+</div>
+
+<div class="dashboard-cards">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Total Requests</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart">
+                    <line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-value">2,451</div>
+            <div class="card-description">Total requests in the last 24 hours</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Success Rate</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-value">89.7%</div>
+            <div class="card-description">Percentage of successful requests (2xx/3xx)</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Avg Response Time</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer">
+                    <path d="M10 2h4"/><path d="M12 14v-4"/><path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6"/><path d="M9 17H4v5"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-value">63ms</div>
+            <div class="card-description">Average server response time</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Error Rate</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-triangle">
+                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-value">10.3%</div>
+            <div class="card-description">Percentage of error responses (4xx/5xx)</div>
+        </div>
+    </div>
+</div>
+
+<div class="data-table-container">
+    <div class="data-table-header">
+        <h2 class="data-table-title">Access Log Entries</h2>
+        <div class="data-table-actions">
+            <a href="{{ url_for('export_logs') }}" class="btn btn-outline">Export CSV</a>
+            <div class="search-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon lucide lucide-search">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search logs...">
+            </div>
+            <div style="margin-left: 1rem;">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter" class="form-input">
+                    <option value="">All</option>
+                    <option value="2">Success (2xx)</option>
+                    <option value="3">Redirect (3xx)</option>
+                    <option value="4">Client Error (4xx)</option>
+                    <option value="5">Server Error (5xx)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>IP Address</th>
+                <th>Method</th>
+                <th>Endpoint</th>
+                <th>Status</th>
+                <th>Response Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr data-expandable="true" data-details-id="log-details-{{ log.id }}">
+                <td>{{ log.timestamp }}</td>
+                <td>{{ log.ip }}</td>
+                <td>{{ log.method }}</td>
+                <td>{{ log.endpoint }}</td>
+                <td>
+                    {% if log.status_code >= 200 and log.status_code < 300 %}
+                    <span class="badge badge-low">{{ log.status_code }}</span>
+                    {% elif log.status_code >= 300 and log.status_code < 400 %}
+                    <span class="badge badge-info">{{ log.status_code }}</span>
+                    {% elif log.status_code >= 400 and log.status_code < 500 %}
+                    <span class="badge badge-medium">{{ log.status_code }}</span>
+                    {% else %}
+                    <span class="badge badge-high">{{ log.status_code }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ log.response_time }}ms</td>
+                <td>
+                    <button class="btn btn-outline" style="padding: 0.25rem 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
+                            <path d="m6 9 6 6 6-6"/>
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+            <tr id="log-details-{{ log.id }}" style="display: none;">
+                <td colspan="7">
+                    <div class="expandable-row-content">
+                        <h3 style="margin-bottom: 0.5rem;">Request Details</h3>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+                            <div>
+                                <p><strong>User Agent:</strong></p>
+                                <p style="font-size: 0.875rem; word-break: break-all;">{{ log.user_agent }}</p>
+                            </div>
+                            
+                            <div>
+                                <p><strong>Referer:</strong></p>
+                                <p style="font-size: 0.875rem;">{{ log.referer or 'None' }}</p>
+                            </div>
+                            
+                            <div>
+                                <p><strong>Bytes Sent:</strong></p>
+                                <p style="font-size: 0.875rem;">{{ log.bytes_sent }} bytes</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                            <button class="btn btn-outline">View Raw Log</button>
+                            <button class="btn btn-outline">Check IP</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

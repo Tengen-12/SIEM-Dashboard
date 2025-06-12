@@ -1,0 +1,159 @@
+[
+  {
+    "id": 1,
+    "name": "Cross-Site Scripting (XSS)",
+    "severity": "high",
+    "endpoint": "/comments/create",
+    "detection_date": "2025-04-08T14:23:15",
+    "status": "open",
+    "description": "Reflected XSS vulnerability in the comment creation endpoint allows injection of arbitrary JavaScript via the 'content' parameter. This could lead to session hijacking or data theft.",
+    "cve": "CVE-2025-1234",
+    "affected_components": ["Comment Service", "Frontend Renderer"],
+    "remediation": "Implement proper input validation and output encoding for user-generated content. Consider using a content security policy to mitigate XSS attacks.",
+    "references": [
+      "https://owasp.org/www-community/attacks/xss/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "SQL Injection",
+    "severity": "critical",
+    "endpoint": "/api/users/search",
+    "detection_date": "2025-04-07T10:15:30",
+    "status": "in_progress",
+    "description": "SQL injection vulnerability in the user search API allows attackers to execute arbitrary SQL queries by manipulating the 'query' parameter. This could lead to unauthorized data access or data manipulation.",
+    "cve": "CVE-2025-5678",
+    "affected_components": ["User Service", "Database Layer"],
+    "remediation": "Use parameterized queries or prepared statements instead of dynamic SQL construction. Implement proper input validation and consider using an ORM with appropriate security features.",
+    "references": [
+      "https://owasp.org/www-community/attacks/SQL_Injection",
+      "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Insecure Direct Object Reference (IDOR)",
+    "severity": "medium",
+    "endpoint": "/api/documents/{id}",
+    "detection_date": "2025-04-05T16:42:10",
+    "status": "fixed",
+    "description": "Insecure direct object reference vulnerability in the document retrieval endpoint allows users to access documents they shouldn't have permission to view by manipulating the ID parameter.",
+    "cve": null,
+    "affected_components": ["Document Service", "Authorization Layer"],
+    "remediation": "Implement proper access control checks for each document access. Use indirect references or ensure authorization checks are performed before returning documents.",
+    "references": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Cross-Site Request Forgery (CSRF)",
+    "severity": "medium",
+    "endpoint": "/api/user/settings",
+    "detection_date": "2025-04-03T09:20:45",
+    "status": "open",
+    "description": "Missing CSRF protection in the user settings update endpoint allows attackers to trick users into making unwanted changes to their account settings if they visit a malicious website while authenticated.",
+    "cve": null,
+    "affected_components": ["User Settings Form", "API Layer"],
+    "remediation": "Implement anti-CSRF tokens for all state-changing operations and validate them on the server side. Consider using the SameSite cookie attribute to prevent CSRF attacks.",
+    "references": [
+      "https://owasp.org/www-community/attacks/csrf",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Server-Side Request Forgery (SSRF)",
+    "severity": "high",
+    "endpoint": "/api/fetch-remote-data",
+    "detection_date": "2025-04-02T11:35:20",
+    "status": "in_progress",
+    "description": "Server-side request forgery vulnerability in the remote data fetching endpoint allows attackers to make the server perform requests to internal resources by manipulating the 'url' parameter.",
+    "cve": "CVE-2025-9012",
+    "affected_components": ["External Data Service", "Network Layer"],
+    "remediation": "Validate and sanitize URL parameters, use an allowlist of permitted domains, and restrict the server from accessing internal networks or localhost. Consider using a proxy service for external requests.",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Insecure Deserialization",
+    "severity": "critical",
+    "endpoint": "/api/import-data",
+    "detection_date": "2025-03-30T14:10:05",
+    "status": "open",
+    "description": "Insecure deserialization vulnerability in the data import feature allows attackers to execute arbitrary code on the server by submitting maliciously crafted serialized objects.",
+    "cve": "CVE-2025-3456",
+    "affected_components": ["Data Import Service", "Serialization Library"],
+    "remediation": "Avoid deserializing data from untrusted sources. If deserialization is necessary, implement integrity checks, use serialization formats that don't allow code execution, and consider using serialization libraries with security features.",
+    "references": [
+      "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "XML External Entity (XXE)",
+    "severity": "high",
+    "endpoint": "/api/xml-parser",
+    "detection_date": "2025-03-28T09:55:30",
+    "status": "fixed",
+    "description": "XML external entity vulnerability in the XML parsing endpoint allows attackers to read arbitrary files on the server or perform server-side request forgery by submitting XML with external entity references.",
+    "cve": "CVE-2025-7890",
+    "affected_components": ["XML Parser", "Document Processor"],
+    "remediation": "Disable external entity processing in the XML parser. Use a secure XML parser configuration that prevents XXE attacks, and consider using alternative data formats like JSON where appropriate.",
+    "references": [
+      "https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing",
+      "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Open Redirect",
+    "severity": "low",
+    "endpoint": "/api/auth/oauth/callback",
+    "detection_date": "2025-03-25T16:40:15",
+    "status": "fixed",
+    "description": "Open redirect vulnerability in the OAuth callback endpoint allows attackers to redirect users to arbitrary URLs by manipulating the 'redirect_uri' parameter, potentially facilitating phishing attacks.",
+    "cve": null,
+    "affected_components": ["Authentication Service", "OAuth Handler"],
+    "remediation": "Validate redirect URLs against an allowlist of permitted destinations. Avoid using user-supplied input for redirects, and consider using relative URLs with a base path.",
+    "references": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Missing Rate Limiting",
+    "severity": "medium",
+    "endpoint": "/api/auth/login",
+    "detection_date": "2025-03-23T11:20:40",
+    "status": "in_progress",
+    "description": "Lack of proper rate limiting on the authentication endpoint allows attackers to perform brute force attacks without restriction, potentially leading to account compromise.",
+    "cve": null,
+    "affected_components": ["Authentication Service", "API Gateway"],
+    "remediation": "Implement rate limiting based on IP address, user ID, or other appropriate identifiers. Consider implementing progressive delays and account lockouts after multiple failed attempts. Use CAPTCHA for additional protection.",
+    "references": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-rate-limiting"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Improper Access Control",
+    "severity": "high",
+    "endpoint": "/api/admin/users",
+    "detection_date": "2025-03-20T14:15:25",
+    "status": "open",
+    "description": "Improper access control in the admin user management API allows regular users to access administrative functions by directly calling the API endpoints without proper authorization checks.",
+    "cve": null,
+    "affected_components": ["Admin Service", "Authorization Layer"],
+    "remediation": "Implement consistent authorization checks across all administrative endpoints. Use role-based access control and enforce it at the API gateway or middleware level. Consider implementing a centralized authorization service.",
+    "references": [
+      "https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Access_Control_Cheat_Sheet.html"
+    ]
+  }
+]

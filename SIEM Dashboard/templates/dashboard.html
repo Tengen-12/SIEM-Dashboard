@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - SIEM {% endblock %}
+
+{% block content %}
+<div class="page-header" role="banner" aria-label="Dashboard Header">
+    <h1 class="page-title" tabindex="0">Security Dashboard</h1>
+    <div class="page-actions" role="toolbar" aria-label="Dashboard Actions">
+        <button class="btn btn-outline" aria-label="Export Data">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>
+            </svg>
+            Export
+        </button>
+        <button class="btn btn-primary" aria-label="Refresh Dashboard">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-cw">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/>
+            </svg>
+            Refresh
+        </button>
+    </div>
+</div>
+
+<div class="dashboard-cards">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Blocked IPs</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-ban">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m4 5 14 12"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-value">10</div>
+            <div class="card-description">Total IPs blocked in the last 24 hours</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Access Attempts</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text">
+                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-value">2,451</div>
+            <div class="card-description">Total access attempts in the last 24 hours</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Active Vulnerabilities</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bug">
+                    <rect width="8" height="14" x="8" y="6" rx="4"/><path d="m19 7-3 2"/><path d="m5 7 3 2"/><path d="m19 19-3-2"/><path d="m5 19 3-2"/><path d="M20 13h-4"/><path d="M4 13h4"/><path d="m10 4 1 2"/><path d="m14 4-1 2"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-value">7</div>
+            <div class="card-description">Open vulnerabilities requiring attention</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Security Score</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gauge">
+                    <path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-value">72%</div>
+            <div class="card-description">Overall security posture score</div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Threat Map</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe">
+                    <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="map-container" id="threat-map"></div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Customize Dashboard</h2>
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
+                    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="card-content">
+            <form id="dashboard-customize-form">
+                <label><input type="checkbox" name="showThreatMap" checked> Show Threat Map</label><br>
+                <label><input type="checkbox" name="showSeverityChart" checked> Show Severity Chart</label><br>
+                <label><input type="checkbox" name="showEventsTable" checked> Show Events Table</label>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="data-table-container">
+    <div class="data-table-header">
+        <h2 class="data-table-title">Recent Security Events</h2>
+        <div class="data-table-actions">
+            <a href="{{ url_for('export_logs') }}" class="btn btn-outline">Export CSV</a>
+            <div class="search-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon lucide lucide-search">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search events...">
+            </div>
+            <div style="margin-left: 1rem;">
+                <label for="severityFilter">Severity:</label>
+                <select id="severityFilter" class="form-input">
+                    <option value="">All</option>
+                    <option value="Critical">Critical</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <table class="data-table" role="table" aria-label="Recent Security Events">
+        <thead>
+            <tr role="row">
+                <th role="columnheader" tabindex="0">Timestamp</th>
+                <th role="columnheader" tabindex="0">Event Type</th>
+                <th role="columnheader" tabindex="0">Source IP</th>
+                <th role="columnheader" tabindex="0">Target</th>
+                <th role="columnheader" tabindex="0">Severity</th>
+                <th role="columnheader" tabindex="0">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2025-04-10 15:32:45</td>
+                <td>Brute Force Attack</td>
+                <td>192.168.1.254</td>
+                <td>/api/auth/login</td>
+                <td><span class="badge badge-high">High</span></td>
+                <td>Blocked</td>
+            </tr>
+            <tr>
+                <td>2025-04-10 15:32:50</td>
+                <td>SQL Injection</td>
+                <td>45.33.22.11</td>
+                <td>/api/users/search</td>
+                <td><span class="badge badge-critical">Critical</span></td>
+                <td>Blocked</td>
+            </tr>
+            <tr>
+                <td>2025-04-10 15:33:01</td>
+                <td>XSS Attack</td>
+                <td>103.74.120.65</td>
+                <td>/api/comments</td>
+                <td><span class="badge badge-high">High</span></td>
+                <td>Blocked</td>
+            </tr>
+            <tr>
+                <td>2025-04-10 15:33:12</td>
+                <td>API Abuse</td>
+                <td>185.220.101.33</td>
+                <td>/api/products</td>
+                <td><span class="badge badge-medium">Medium</span></td>
+                <td>Rate Limited</td>
+            </tr>
+            <tr>
+                <td>2025-04-10 15:33:30</td>
+                <td>Directory Traversal</td>
+                <td>91.108.76.132</td>
+                <td>/config/../../etc/passwd</td>
+                <td><span class="badge badge-critical">Critical</span></td>
+                <td>Blocked</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="data-table-container">
+    <div class="data-table-header">
+        <h2 class="data-table-title">Vulnerability Summary</h2>
+    </div>
+    
+    <div style="padding: 1.5rem;">
+        <h3 style="margin-bottom: 1rem;">Severity Distribution</h3>
+        <canvas id="severityChart" height="120"></canvas>
+    </div>
+</div>
+
+<div class="map-container" id="threat-map">
+    <!-- Map will be initialized by JavaScript -->
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/chart-loader.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Poll for new data every 10 seconds
+    setInterval(function() {
+        fetch('/api/data/access_logs')
+            .then(res => res.json())
+            .then(data => {
+                // Optionally update table or chart with new data
+                // showToast('Access logs updated', 'info');
+            });
+        fetch('/api/data/vulnerabilities')
+            .then(res => res.json())
+            .then(data => {
+                // Optionally update chart or table with new data
+                // showToast('Vulnerabilities updated', 'info');
+            });
+    }, 10000);
+
+    loadChartJs(function() {
+        // Example: Render a severity distribution chart if the canvas exists
+        var ctx = document.getElementById('severityChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Critical', 'High', 'Medium', 'Low', 'Info'],
+                    datasets: [{
+                        label: 'Vulnerabilities',
+                        data: [3, 4, 3, 1, 2], // Replace with dynamic data if available
+                        backgroundColor: [
+                            'rgba(211,47,47,0.8)',
+                            'rgba(244,67,54,0.8)',
+                            'rgba(255,152,0,0.8)',
+                            'rgba(76,175,80,0.8)',
+                            'rgba(33,150,243,0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Severity Distribution' }
+                    }
+                }
+            });
+        }
+    });
+});
+</script>
+{% endblock %}

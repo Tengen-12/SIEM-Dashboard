@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SIEM Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="login-container" style="max-width: 400px; margin: 5rem auto; padding: 2rem; background: var(--secondary-bg-color); border-radius: 0.5rem; box-shadow: var(--box-shadow);">
+        <h1 style="margin-bottom: 1.5rem; text-align: center;">SIEM Dashboard Login</h1>
+        {% if error %}
+        <div class="alert alert-danger" style="color: var(--danger-color); margin-bottom: 1rem;">{{ error }}</div>
+        {% endif %}
+        <form method="post">
+            <div style="margin-bottom: 1rem;">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-input" required style="width: 100%; padding: 0.5rem; margin-top: 0.25rem;">
+            </div>
+            <div style="margin-bottom: 1.5rem;">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-input" required style="width: 100%; padding: 0.5rem; margin-top: 0.25rem;">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+        </form>
+        <p style="text-align: center; margin-top: 1rem;">
+            Don't have an account? <a href="{{ url_for('register') }}" style="color: var(--primary-color);">Register here</a>
+        </p>
+    </div>
+</body>
+</html>
