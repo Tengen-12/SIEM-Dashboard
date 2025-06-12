@@ -28,7 +28,7 @@ A full-stack Security Information and Event Management (SIEM) Dashboard built to
 ---
 
 ## 📂 Project Structure
-'''
+```plaintext
 ├── static/ 
 │ ├── css/ 
 │ ├── js/ 
@@ -44,7 +44,8 @@ A full-stack Security Information and Event Management (SIEM) Dashboard built to
 ├── config.py 
 ├── database.db 
 └── requirements.txt 
-'''
+```
+
 ---
 
 ## 🗒️ Install Dependencies
@@ -55,8 +56,8 @@ pip install -r requirements.txt
 
 ## 📄 Access the Dashboard
 
-Run the application - python app.py 
-Access the Dashboard - http://127.0.0.1:5000
+1. Run the application - python app.py 
+2. Access the Dashboard - http://127.0.0.1:5000
 
 ---
 
