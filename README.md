@@ -68,7 +68,3 @@ pip install -r requirements.txt
 ![Screenshot 2025-05-29 184040](https://github.com/user-attachments/assets/09bd2fed-6299-4a59-9a4a-acdac80ee22e)
 
 ---
-
-## 🙋‍♂️ Author
-Aditya Barokar 
-- Security Analyst and Penetration Tester
